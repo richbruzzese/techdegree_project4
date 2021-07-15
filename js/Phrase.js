@@ -21,4 +21,10 @@ class Phrase {
             }
         })
     }
+    /**
+     * Create method to check the letter for the phrase. if so return true statement
+     * 
+     * create a method to show the matched letter in the phrase on the page. Method must loop through
+     * each matched letter on the page and show all matches 
+     */
 }

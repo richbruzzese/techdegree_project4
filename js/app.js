@@ -12,3 +12,9 @@
 
 const game = new Game();
 game.startGame();
+
+/**
+ * add event listener for the qwerty keys on the page.  target needs to be the button
+ * was selected can then handle the game function of disabling the letter on the page
+ * and checking for a correct or incorrect selection
+ */
