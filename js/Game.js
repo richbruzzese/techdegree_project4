@@ -37,19 +37,21 @@ class Game {
     gameInteraction(){
         let qwertyLetter = document.querySelectorAll('#qwerty button')
         let selectedLetter = ''
-        
         qwertyLetter.forEach(key =>{
             key.addEventListener('click', (e) =>{
                 if(e.target.tagName === 'BUTTON'){
                     key.disabled = true
                     key.classList.add('chosen')
                     selectedLetter = e.target.textContent
+
                     if(this.activePhrase.checkLetter(selectedLetter) === true){
                         this.activePhrase.showLetter(selectedLetter)
-                        
                     }else{
-                        this.loseLife();
-                    }    
+                        this.loseLife()}
+                    if(this.missed === 5)
+                    this.gameOver(false)
+                    if(this.checkForWin === true)
+                    this.gameOver(true)    
                 }
             })
         })   
@@ -61,30 +63,35 @@ class Game {
         console.log('lose life')
         this.missed ++
     }
+    checkForWin(){
+        let phraseLength = this.activePhrase.phrase.length
+        let foundLetters = document.querySelectorAll('li.show')
+        let phraseSpaces = document.querySelectorAll('.space')
+        let winCondition = foundLetters.length + phraseSpaces.length
+        if(winCondition == phraseLength){
+            return true
+        }else{
+            return false}
+    }
+    gameOver(winOrLoss){
+        let finalScreen = overlay
+        finalScreen.style.display = 'flex'
+        let gameEndMsg = document.getElementById('game-over-message')
+        let srtbutton = document.getElementById('btn__reset')
+        srtbutton.textContent = 'play again'
+        let ul = document.getElementById('phrase')
+        ul.innerHTML = ''
+        
+
+        if(winOrLoss === true){
+        finalScreen.classList.replace('start', 'win')
+        gameEndMsg.textContent = "yay"
+        }else{
+            finalScreen.classList.replace('start', 'lose')
+            gameEndMsg.textContent = ":("
+        }
+        
+    }
 }
- /**
-     * create method to handle what happens when a letter is chosen.
-     * Disable target selection to avoid duplicate selections
-     * var to find letter selected
-     * 
-     * Check if(letter select === letter in phrase){
-     *          If true, unhide all matches.
-     *      }else{
-     *      remove a heart container and add one to incorrectGuess
-     *      
-     * } then check if a win or loss condition has been met.
-     * 
-     * 
-     * create method to end the game
-     * 
-     * 
-     * if win. Method will enable overlay and display a winning message
-     * start button will be added back to page to allow player to play again
-     * 
-     * if loss.  Method will enable overlay and display loss message
-     * start button will be added back to page to allow player 
-     * 
-     * 
-     */
 
 
