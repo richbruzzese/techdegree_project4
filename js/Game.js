@@ -4,7 +4,7 @@
 class Game {
     constructor(){
         this.phrases = this.makePhrase();
-        this.incorrectGuess = 0
+        this.missed = 0
         this.activePhrase = null
     }
     makePhrase(){
@@ -33,7 +33,36 @@ class Game {
         this.activePhrase = this.randomPhrase
         this.randomPhrase.displayNewPhrase(this.activePhrase)
     }
-    /**
+
+    gameInteraction(){
+        let qwertyLetter = document.querySelectorAll('#qwerty button')
+        let selectedLetter = ''
+        
+        qwertyLetter.forEach(key =>{
+            key.addEventListener('click', (e) =>{
+                if(e.target.tagName === 'BUTTON'){
+                    key.disabled = true
+                    key.classList.add('chosen')
+                    selectedLetter = e.target.textContent
+                    if(this.activePhrase.checkLetter(selectedLetter) === true){
+                        this.activePhrase.showLetter(selectedLetter)
+                        
+                    }else{
+                        this.loseLife();
+                    }    
+                }
+            })
+        })   
+    }
+
+    loseLife(){
+        let heart = document.querySelectorAll('.tries img')
+        heart[this.missed].src='images/lostHeart.png'
+        console.log('lose life')
+        this.missed ++
+    }
+}
+ /**
      * create method to handle what happens when a letter is chosen.
      * Disable target selection to avoid duplicate selections
      * var to find letter selected
@@ -57,5 +86,5 @@ class Game {
      * 
      * 
      */
-}
+
 

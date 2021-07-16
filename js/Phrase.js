@@ -16,15 +16,20 @@ class Phrase {
                 `<li class= "space"> ${letter}</li>`)
             }else{
                 phraseUl.insertAdjacentHTML('beforeend',
-                `<li class="hide letter">${letter} `)
+                `<li class="hide letter ${letter}">${letter} `)
 
             }
         })
     }
-    /**
-     * Create method to check the letter for the phrase. if so return true statement
-     * 
-     * create a method to show the matched letter in the phrase on the page. Method must loop through
-     * each matched letter on the page and show all matches 
-     */
+
+    checkLetter (letter){
+        return this.phrase.includes(letter);
+    }
+    showLetter(letter){
+        let rightLetter = document.getElementsByClassName(letter)
+        for(let i = 0 ; i <rightLetter.length; i++){
+            rightLetter[i].classList.replace('hide', 'show')
+        }
+    }
+   
 }
