@@ -21,7 +21,6 @@ const game = new Game();
 startButton.addEventListener('click', () =>{
     overlay.style.display = 'none'
     overlay.className = 'start'
-    console.log('game started');
     game.startGame();    
 })
 
