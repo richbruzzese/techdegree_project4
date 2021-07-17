@@ -7,93 +7,101 @@ class Game {
         this.missed = 0
         this.activePhrase = null
     }
+    /**
+     * 
+     * @param makePhrase @returns [] of Phrase objects 
+     */
     makePhrase(){
         let phraseList = [
-            new Phrase('Hello There'),
-            new Phrase('I ATE THEM')
+            new Phrase('Eat your heart out Vanna White'),
+            new Phrase('You are filled with determination'),
+            new Phrase('Memories of Crono'),
+            new Phrase('Acquatic Ambience'),
+            new Phrase('Ride Ze Shoopuff')
         ]
         return phraseList
     }
+    //
     get randomPhrase(){
         return this.getrandomPhrase()
     }
-
+    /**
+     * 
+     * @returns 
+     */
     getrandomPhrase(){
         const randomPhrase = Math.floor(Math.random() * this.phrases.length)
         return this.phrases[randomPhrase]
     }
+
+    /**
+     * 
+     */
     startGame(){
-
-        startButton.addEventListener('click', () =>{
-        overlay.style.display = 'none'
-        overlay.className = 'start'
-        console.log('game started');
-        })
         this.activePhrase = this.randomPhrase
-        this.randomPhrase.displayNewPhrase(this.activePhrase)
+        this.randomPhrase.addPhraseToDisplay(this.activePhrase)
     }
 
-    gameInteraction(){
-        let qwertyLetter = document.querySelectorAll('#qwerty button')
-        let selectedLetter = ''
-        qwertyLetter.forEach(key =>{
-            key.addEventListener('click', (e) =>{
-                if(e.target.tagName === 'BUTTON'){
-                    key.disabled = true
-                    key.classList.add('chosen')
-                    selectedLetter = e.target.textContent
-
+    /**
+     * 
+     */
+    handleInteraction(selectedLetter, key){
                     if(this.activePhrase.checkLetter(selectedLetter) === true){
-                        this.activePhrase.showLetter(selectedLetter)
+                        key.classList.add('chosen')
+                        this.activePhrase.showMatchedLetter(selectedLetter)
+                        
+                        if(this.checkForWin() === true){
+                        this.gameOver(true)}
                     }else{
-                        this.loseLife()}
-                    if(this.missed === 5){
-                    this.gameOver(false)}
-                    if(this.checkForWin() === true){
-                    this.gameOver(true)}
-                }
-            })
-        })   
+                        key.classList.add('wrong')
+                        this.removeLife()}  
     }
 
-    loseLife(){
-        let heart = document.querySelectorAll('.tries img')
+    /**
+     * 
+     */
+    removeLife(){
         heart[this.missed].src='images/lostHeart.png'
-        console.log('lose life')
         this.missed ++
+        if(this.missed === 5){
+        this.gameOver(false)}
     }
+    /**
+     * 
+     * @returns 
+     */
     checkForWin(){
         let phraseLength = this.activePhrase.phrase.length
         let foundLetters = document.querySelectorAll('li.show')
         let phraseSpaces = document.querySelectorAll('.space')
         let winCondition = foundLetters.length + phraseSpaces.length
+
         if(winCondition == phraseLength){
             return true
         }else{
             return false}
     }
+    /**
+     * 
+     * @param {*} winOrLoss 
+     */
     gameOver(winOrLoss){
-        let finalScreen = overlay
-        finalScreen.style.display = 'flex'
-        let gameEndMsg = document.getElementById('game-over-message')
-        let srtbutton = document.getElementById('btn__reset')
-        srtbutton.textContent = 'play again'
-        const phraseUl = document.querySelector('#phrase ul')
+        overlay.style.display = 'flex'
+        startButton.textContent = 'Play Again'
         phraseUl.innerHTML = ''
         this.missed = 0
         for(let i = 0; i<keys.length; i++){
             keys[i].classList = 'key'
             keys[i].disabled = false
         }
-        this.startGame()
         
 
         if(winOrLoss === true){
-        finalScreen.classList.replace('start', 'win')
-        gameEndMsg.textContent = "yay"
+        overlay.classList.replace('start', 'win')
+        gameEndMsg.textContent = "You Did It!"
         }else{
-            finalScreen.classList.replace('start', 'lose')
-            gameEndMsg.textContent = ":("
+            overlay.classList.replace('start', 'lose')
+            gameEndMsg.textContent = "Sorry, Try Again"
         }
         
     }

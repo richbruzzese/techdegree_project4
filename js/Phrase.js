@@ -7,10 +7,9 @@ class Phrase {
         this.phrase = phrase.toLowerCase()
     }
     //Display phrase on page
-    displayNewPhrase(phrase){
-        const phraseUl = document.querySelector('#phrase ul')
-        let letters = phrase.phrase.split('')
-        letters.forEach((letter) =>{
+    addPhraseToDisplay(phrase){
+        let phraseletters = phrase.phrase.split('')
+        phraseletters.forEach((letter) =>{
             if(letter === ' '){
                 phraseUl.insertAdjacentHTML('beforeend',
                 `<li class= "space"> ${letter}</li>`)
@@ -21,11 +20,15 @@ class Phrase {
             }
         })
     }
-
+    /**
+     * 
+     * @param {*} letter 
+     * @returns 
+     */
     checkLetter (letter){
         return this.phrase.includes(letter);
     }
-    showLetter(letter){
+    showMatchedLetter(letter){
         let rightLetter = document.getElementsByClassName(letter)
         for(let i = 0 ; i <rightLetter.length; i++){
             rightLetter[i].classList.replace('hide', 'show')
