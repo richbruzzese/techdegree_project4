@@ -21,14 +21,23 @@ const game = new Game();
 startButton.addEventListener('click', () =>{
     overlay.style.display = 'none'
     overlay.className = 'start'
-    game.startGame();    
+    game.startGame();
 })
+
 
 qwertyLetter.forEach(key => {
     key.addEventListener('click', (e) =>{
         if(e.target.tagName === 'BUTTON'){
-            key.disabled = true
-            game.handleInteraction(e.target.textContent, key)
+            if(overlay.style.display == 'none'){
+            game.handleInteraction(e.target.textContent)
+            }
         }
     })
+    
+})
+window.addEventListener('keydown', (e)=>{
+    if(overlay.style.display == 'none'){
+        game.handleInteraction(e.key)
+        }
+
 })

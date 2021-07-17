@@ -45,16 +45,25 @@ class Game {
     /**
      * 
      */
-    handleInteraction(selectedLetter, key){
-                    if(this.activePhrase.checkLetter(selectedLetter) === true){
-                        key.classList.add('chosen')
-                        this.activePhrase.showMatchedLetter(selectedLetter)
-                        
-                        if(this.checkForWin() === true){
-                        this.gameOver(true)}
-                    }else{
-                        key.classList.add('wrong')
-                        this.removeLife()}  
+    handleInteraction(selectedLetter){ 
+        let key; 
+            qwertyLetter.forEach( (letter) =>{
+            if(letter.textContent === selectedLetter){
+                key = letter
+            }
+        })
+        if(key && !key.disabled){
+            key.disabled = true
+            if(this.activePhrase.checkLetter(selectedLetter) === true){
+                key.classList.add('chosen')
+                this.activePhrase.showMatchedLetter(selectedLetter)
+                
+                if(this.checkForWin() === true){
+                this.gameOver(true)}
+            }else{
+                key.classList.add('wrong')
+                this.removeLife()}  
+        }
     }
 
     /**
@@ -90,11 +99,15 @@ class Game {
         startButton.textContent = 'Play Again'
         phraseUl.innerHTML = ''
         this.missed = 0
+        
         for(let i = 0; i<keys.length; i++){
             keys[i].classList = 'key'
             keys[i].disabled = false
         }
         
+        heart.forEach((heart) =>{
+            heart.src='images/liveHeart.png'
+        })
 
         if(winOrLoss === true){
         overlay.classList.replace('start', 'win')

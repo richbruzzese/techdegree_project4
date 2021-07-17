@@ -183,15 +183,21 @@ button {
 }
 
 .title {
-  color: #FFF;
+  /* color: #FFF; */
+  -webkit-text-stroke:.5px black;
+  -webkit-text-fill-color: white;
+
 }
 
 .start {
-  background-color: #3a3f58;
+  /* background-color: #3a3f58; */
+  background-image: url(../images/overlayIMG.gif);
+  background-size: cover
 }
 
 .start a {
   color: #fff;
+
 }
 
 .win {
@@ -209,3 +215,4 @@ button {
 .lose a {
   color: var(--color-lose);
 }
+
