@@ -23,11 +23,10 @@ class Game {
         return this.phrases[randomPhrase]
     }
     startGame(){
-        const startButton = document.getElementById('btn__reset')
-        const overlay = document.getElementById('overlay')
 
         startButton.addEventListener('click', () =>{
         overlay.style.display = 'none'
+        overlay.className = 'start'
         console.log('game started');
         })
         this.activePhrase = this.randomPhrase
@@ -48,10 +47,10 @@ class Game {
                         this.activePhrase.showLetter(selectedLetter)
                     }else{
                         this.loseLife()}
-                    if(this.missed === 5)
-                    this.gameOver(false)
-                    if(this.checkForWin === true)
-                    this.gameOver(true)    
+                    if(this.missed === 5){
+                    this.gameOver(false)}
+                    if(this.checkForWin() === true){
+                    this.gameOver(true)}
                 }
             })
         })   
@@ -79,8 +78,14 @@ class Game {
         let gameEndMsg = document.getElementById('game-over-message')
         let srtbutton = document.getElementById('btn__reset')
         srtbutton.textContent = 'play again'
-        let ul = document.getElementById('phrase')
-        ul.innerHTML = ''
+        const phraseUl = document.querySelector('#phrase ul')
+        phraseUl.innerHTML = ''
+        this.missed = 0
+        for(let i = 0; i<keys.length; i++){
+            keys[i].classList = 'key'
+            keys[i].disabled = false
+        }
+        this.startGame()
         
 
         if(winOrLoss === true){
@@ -93,5 +98,3 @@ class Game {
         
     }
 }
-
-
