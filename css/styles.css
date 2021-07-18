@@ -8,9 +8,10 @@
   --color-lose: #D94545;
   --color-start: #5b85b7;
   --color-neutral: #445069;
-  --color-neutral-light: #D2D2D2;
-  --color-keys: #37474F;
-  --color-keys-light: #E5E5E5;
+  --color-neutral-light: #737D7B;
+  --color-neutral-dark: #292B2B;
+  --color-keys: #767678;
+  --color-keys-light: #26668C;
   --font-size-large: 60px;
   --font-size-medium: 20px;
   --transition: all .2s ease-in-out;
@@ -20,7 +21,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
 body {
@@ -28,6 +29,8 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  background-image: url(../images/inGame.png);
+  background-size:cover;
 }
 
 li, ol, ul {
@@ -52,8 +55,8 @@ button {
   padding: .5rem 1rem;
   color: var(--color-keys);
   font-size: var(--font-size-medium);
-  background-color: var(--color-keys-light);
-  border-radius: 5px;
+  background-color: var(--color-neutral-dark);
+  border-radius: 15px;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
   transition: var(--transition);
@@ -86,7 +89,7 @@ button {
 /* Title */
 
 .header {
-  color: #3a3f58;
+  color: #CDD8D8;
 }
 
 
@@ -94,8 +97,8 @@ button {
 
 .letter {
   font-size: var(--font-size-medium);
-  height: 65px;
-  width: 65px;
+  height: 45px;
+  width: 45px;
   padding: 20px 1px 0 1px;
   margin-right: 2px;
   color: transparent;
@@ -104,17 +107,17 @@ button {
 }
 
 .space {
-  width: 15px;
+  width: 10px;
 }
 
 
 
 .show {
   color: #fff;
-  background-color: #4ac0d5;
+  background-color: #354765;
   font-size: 20px;
-  height: 65px;
-  width: 65px;
+  height: 45px;
+  width: 45px;
   padding: 20px 1px 0 1px;
   margin-right: 2px;
   border-radius: 5px;
@@ -145,7 +148,7 @@ button {
 }
 
 .wrong {
-  background: #f7a964;
+  background: #7A3F36;
   color: #FFFFFF;
 }
 
@@ -173,26 +176,25 @@ button {
   display: flex;
   flex-direction: column;
   position: fixed;
-  color: #FFFFFF;
+  color: #767678;
   justify-content: center;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   border-radius: 5px;
+  background-image: url(../images/bgStart.jpg);
+  background-size:cover;
 }
 
 .title {
-  /* color: #FFF; */
-  -webkit-text-stroke:.5px black;
-  -webkit-text-fill-color: white;
-
+  color: #CDD8D8;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+ 
 }
 
 .start {
-  /* background-color: #3a3f58; */
-  background-image: url(../images/overlayIMG.gif);
-  background-size: cover
+  background-color: #3a3f58;
 }
 
 .start a {
@@ -201,7 +203,7 @@ button {
 }
 
 .win {
-  background-color: var(--color-win);
+  background-image: url('../images/bgWin.jpg') !important;
 }
 
 .win a {
@@ -210,6 +212,7 @@ button {
 
 .lose {
   background-color: #f5785f;
+  background-image: url('../images/lose.jpg') !important;
 }
 
 .lose a {

@@ -3,7 +3,7 @@
  * app.js */
 
 /**
- * 
+ * Variables for DOM elements used within Phrase and Game Class
  */
 const keys = document.querySelectorAll('.key')
 const hearts = document.querySelector('#scoreboard')
@@ -15,29 +15,31 @@ const heart = document.querySelectorAll('.tries img')
 const qwertyLetter = document.querySelectorAll('#qwerty button')
 const letters = document.querySelector('#qwerty')
 
-//
-const game = new Game();
 
+//Event listener for start button.  Once clicked, calls the start game method
 startButton.addEventListener('click', () =>{
-    overlay.style.display = 'none'
-    overlay.className = 'start'
+    const game = new Game();
     game.startGame();
-})
 
+    /**
+ * Event Listeners for click and keydown events.  Will only allow input if the overlay 
+ * is not displayed.
+ */  
 
-qwertyLetter.forEach(key => {
-    key.addEventListener('click', (e) =>{
-        if(e.target.tagName === 'BUTTON'){
+    letters.addEventListener('click', (e) =>{
+
+            if(e.target.tagName === 'BUTTON'){
             if(overlay.style.display == 'none'){
-            game.handleInteraction(e.target.textContent)
-            }
-        }
-    })
+                game.handleInteraction(e.target.textContent)
+                }
+             }
+        })
     
-})
-window.addEventListener('keydown', (e)=>{
-    if(overlay.style.display == 'none'){
+    
+    window.addEventListener('keydown', (e)=>{
+        if(overlay.style.display == 'none'){
         game.handleInteraction(e.key)
         }
 
+    })
 })

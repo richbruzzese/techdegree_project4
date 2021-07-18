@@ -19,15 +19,22 @@ class Phrase {
 
             }
         })
+        
     }
     /**
      * 
-     * @param {*} letter 
-     * @returns 
+     * @param {*} letter chosen on qwerty display or keyboard to be checked
+     * @returns boolean
      */
     checkLetter (letter){
+        console.log(letter)
         return this.phrase.includes(letter);
     }
+    /**
+     * 
+     * @param {*} letter chosen on qwerty display or keyboard is found in the active phrase
+     * all instances of letter displayed by replacing hide class with show.
+     */
     showMatchedLetter(letter){
         let rightLetter = document.getElementsByClassName(letter)
         for(let i = 0 ; i <rightLetter.length; i++){
