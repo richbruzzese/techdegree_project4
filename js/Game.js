@@ -23,9 +23,8 @@ class Game {
         return phraseList
     }
     
-    get randomPhrase(){
-        return this.getrandomPhrase()
-    }
+    
+    
     /**
      * 
      * function @returns index of random phrase in array to generate when
@@ -43,8 +42,9 @@ class Game {
     startGame(){
         overlay.style.display = 'none'
         overlay.className = 'start'
-        this.activePhrase = this.randomPhrase
-        this.randomPhrase.addPhraseToDisplay(this.activePhrase)
+        let randomPhrase = this.getrandomPhrase()
+        this.activePhrase = randomPhrase
+        this.activePhrase.addPhraseToDisplay(this.activePhrase)
     }
 
     /**
