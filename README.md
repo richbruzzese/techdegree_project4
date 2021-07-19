@@ -7,6 +7,15 @@
 
  app.js stores the variables for the game and handles interaction via two classes
  Phrase.js and Game.js
+ 
+  ** Personalized Stylings **
+  - Project CSS files updated to prevent user from highlighting phrase div and discovering hidden phrase
+  - HTML updated to reference new life tokens
+  - additional images added to the /images folder to use throughout game
+  - Background images changed on start screen overlay
+  - Different Win/Loss backgrounds added to overlay and change based on result.
+  - Color pallete updated with new colors to better align with Bloodborne theme
+
 
  Phrase.js methods:
  # addPhraseToDisplay()  
@@ -32,11 +41,3 @@
  # gameOver()
  Places the game in an end state and resets all aspects of the game to default state/
  Displays a win or lose message dependant on results of game
-
- ** Personalized Stylings **
-  - Project CSS files updated to prevent user from highlighting phrase div and discovering hidden phrase
-  - HTML updated to reference new life tokens
-  - additional images added to the /images folder to use throughout game
-  - Background images changed on start screen overlay
-  - Different Win/Loss backgrounds added to overlay and change based on result.
-  - Color pallete updated with new colors to better align with Bloodborne theme

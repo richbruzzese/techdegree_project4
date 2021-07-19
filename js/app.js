@@ -18,8 +18,9 @@ const letters = document.querySelector('#qwerty')
 
 //Event listener for start button.  Once clicked, calls the start game method
 startButton.addEventListener('click', () =>{
-    const game = new Game();
+    game = new Game();
     game.startGame();
+    console.log("game", game)
 
     /**
  * Event Listeners for click and keydown events.  Will only allow input if the overlay 
